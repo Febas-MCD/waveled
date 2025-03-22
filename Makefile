@@ -37,6 +37,11 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
+## Download raw data
+download_data:
+	@echo "Downloading raw data from the web..."
+	$(PYTHON_INTERPRETER) src/data/data_downloader.py
+
 ## Make Dataset
 data: requirements
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
@@ -89,6 +94,29 @@ endif
 ## Test python environment is setup correctly
 test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
+
+## Create necessary folders
+folders:
+	@echo "Creating project directories..."
+ifeq ($(OS),Windows_NT)
+	@if not exist "data\external" mkdir "data\external"
+	@if not exist "data\interim" mkdir "data\interim"
+	@if not exist "data\processed" mkdir "data\processed"
+	@if not exist "data\raw" mkdir "data\raw"
+	@if not exist "docs" mkdir "docs"
+	@if not exist "models" mkdir "models"
+	@if not exist "notebooks" mkdir "notebooks"
+	@if not exist "references" mkdir "references"
+	@if not exist "reports\figures" mkdir "reports\figures"
+	@if not exist "src\data" mkdir "src\data"
+	@if not exist "src\features" mkdir "src\features"
+	@if not exist "src\models" mkdir "src\models"
+	@if not exist "src\visualization" mkdir "src\visualization"
+else
+	mkdir -p data/external data/interim data/processed data/raw docs models notebooks references reports/figures src/data src/features src/models src/visualization
+endif
+	@echo "Project directories created."
+
 
 #################################################################################
 # PROJECT RULES                                                                 #
