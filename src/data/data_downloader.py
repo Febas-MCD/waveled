@@ -7,10 +7,10 @@ from tqdm import tqdm  # For progress bar
 
 
 # Define the base directories
-base_dirs = ['interim', 'processed', 'raw']
+base_dirs = ['../../data/raw', '../../data/interim', '../../data/processed']
 
 # Define the subdirectories to create in each base directory
-sub_dirs = ['bal_train', 'eval', 'unbal_train']
+sub_dirs = ['bal_train/', 'eval/', 'unbal_train/']
 
 def create_folders(base_path, sub_dirs):
     """
@@ -20,10 +20,11 @@ def create_folders(base_path, sub_dirs):
         base_path (str): The path to the base directory.
         sub_dirs (list): List of subdirectories to create.
     """
-    for sub_dir in sub_dirs:
-        dir_path = os.path.join(base_path, sub_dir)
-        os.makedirs(dir_path, exist_ok=True)
-        print(f"Created directory: {dir_path}")
+    for base_dir in base_path:
+        for sub_dir in sub_dirs:
+            dir_path = os.path.join(base_dir, sub_dir)
+            os.makedirs(dir_path, exist_ok=True)
+            print(f"Created directory: {dir_path}")
 
 # Define the files to download and their save paths
 files_to_download = {
@@ -145,6 +146,9 @@ def extract_with_tar_and_clean(archive_path, extract_to):
         print(f"Unsupported operating system: {platform.system()}")
 
 def main():
+    # Create the directories
+    create_folders(base_dirs, sub_dirs)
+
     # Download the CSV files
     for url, save_path in files_to_download.items():
         download_file(url, save_path)
