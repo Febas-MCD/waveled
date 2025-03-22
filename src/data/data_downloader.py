@@ -29,6 +29,8 @@ files_to_download = {
     "http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/eval_segments.csv": "data/raw/eval/eval_segments.csv",
     "http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/balanced_train_segments.csv": "data/raw/bal_train/balanced_train_segments.csv",
     "http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/unbalanced_train_segments.csv": "data/raw/unbal_train/unbalanced_train_segments.csv",
+    "http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/class_labels_indices.csv": "data/raw/class_labels_indices.csv",
+    "https://raw.githubusercontent.com/audioset/ontology/d417d32bf59c711abb5910fd2f76a0eb44697991/ontology.json": "data/raw/ontology.json"
 }
 
 # Define the .tar.gz file to download
