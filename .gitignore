@@ -1,3 +1,9 @@
+# virtual environment
+venv/
+
+# git message template
+.gitmessage
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,4 +1,4 @@
-.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3
+.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3 create_environment test_environment help
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -8,12 +8,24 @@ PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
 PROFILE = default
 PROJECT_NAME = waveled
-PYTHON_INTERPRETER = python3
+PYTHON_INTERPRETER = python
 
-ifeq (,$(shell which conda))
-HAS_CONDA=False
+# Detect OS
+ifeq ($(OS),Windows_NT)
+	SYSTEM = Windows
+	CONDA_DETECT_CMD = where conda
+	VENV_ACTIVATE_CMD = .\\venv\\Scripts\\activate
 else
-HAS_CONDA=True
+	SYSTEM = Unix
+	CONDA_DETECT_CMD = which conda
+	VENV_ACTIVATE_CMD = source venv/bin/activate
+endif
+
+# Detect Conda
+ifeq (,$(shell $(CONDA_DETECT_CMD)))
+	HAS_CONDA = False
+else
+	HAS_CONDA = True
 endif
 
 #################################################################################
@@ -24,6 +36,11 @@ endif
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+
+## Download raw data
+download_data:
+	@echo "Downloading raw data from the web..."
+	$(PYTHON_INTERPRETER) src/data/data_downloader.py
 
 ## Make Dataset
 data: requirements
@@ -57,30 +74,53 @@ endif
 ## Set up python interpreter environment
 create_environment:
 ifeq (True,$(HAS_CONDA))
-		@echo ">>> Detected conda, creating conda environment."
+	@echo ">>> Detected conda, creating conda environment."
 ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
-	conda create --name $(PROJECT_NAME) python=3
+	conda create --name $(PROJECT_NAME) python=3 -y
 else
-	conda create --name $(PROJECT_NAME) python=2.7
+	conda create --name $(PROJECT_NAME) python=2.7 -y
 endif
-		@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
+ifeq ($(SYSTEM),Windows)
+	@echo ">>> New conda env created. Activate with:\nconda activate $(PROJECT_NAME)"
 else
-	$(PYTHON_INTERPRETER) -m pip install -q virtualenv virtualenvwrapper
-	@echo ">>> Installing virtualenvwrapper if not already installed.\nMake sure the following lines are in shell startup file\n\
-	export WORKON_HOME=$$HOME/.virtualenvs\nexport PROJECT_HOME=$$HOME/Devel\nsource /usr/local/bin/virtualenvwrapper.sh\n"
-	@bash -c "source `which virtualenvwrapper.sh`;mkvirtualenv $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER)"
-	@echo ">>> New virtualenv created. Activate with:\nworkon $(PROJECT_NAME)"
+	@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
+endif
+else
+	@echo ">>> Creating virtual environment using $(PYTHON_INTERPRETER)."
+	$(PYTHON_INTERPRETER) -m venv venv
+	@echo ">>> New virtualenv created. Activate with:\n$(VENV_ACTIVATE_CMD)"
 endif
 
 ## Test python environment is setup correctly
 test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
 
+## Create necessary folders
+folders:
+	@echo "Creating project directories..."
+ifeq ($(OS),Windows_NT)
+	@if not exist "data\external" mkdir "data\external"
+	@if not exist "data\interim" mkdir "data\interim"
+	@if not exist "data\processed" mkdir "data\processed"
+	@if not exist "data\raw" mkdir "data\raw"
+	@if not exist "docs" mkdir "docs"
+	@if not exist "models" mkdir "models"
+	@if not exist "notebooks" mkdir "notebooks"
+	@if not exist "references" mkdir "references"
+	@if not exist "reports\figures" mkdir "reports\figures"
+	@if not exist "src\data" mkdir "src\data"
+	@if not exist "src\features" mkdir "src\features"
+	@if not exist "src\models" mkdir "src\models"
+	@if not exist "src\visualization" mkdir "src\visualization"
+else
+	mkdir -p data/external data/interim data/processed data/raw docs models notebooks references reports/figures src/data src/features src/models src/visualization
+endif
+	@echo "Project directories created."
+
+
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
-
-
 
 #################################################################################
 # Self Documenting Commands                                                     #
