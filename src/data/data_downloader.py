@@ -1,6 +1,7 @@
 import os
 import requests
-import shutil
+import shutil # For moving files
+import platform  # For checking the operating system
 import subprocess  # For calling the tar command
 from tqdm import tqdm  # For progress bar
 
@@ -64,10 +65,6 @@ def download_file(url, save_path):
         print(f"Downloaded {save_path}")
     else:
         print(f"Failed to download {url}. Status code: {response.status_code}")
-
-import os
-import subprocess
-import platform
 
 def move_and_cleanup(extract_to):
     """
