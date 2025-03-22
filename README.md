@@ -1,9 +1,11 @@
-Waveled Project
-==============================
+# Sound waves labeling project (WAVELED)
 
-Identification, analysis and classification of sound waves in a data science project.
+## Description
 
-Project Organization
+This project seeks the identification, analysis and classification of sound waves in a data science project.
+
+## Project Organization
+
 ------------
 
     ├── LICENSE
@@ -51,7 +53,33 @@ Project Organization
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
+## Usage Instructions
+
+1. Clone the repository: `git clone [https://github.com/FelSeb-Team/waveled.git]`
+2. Create enviroment: `make create_environment`
+3. Install the dependencies: `make requirements`
+4. Create the necessary folders: `make folders`
+5. Run the Makefile Data Downloader: `make download_data`
+6. (Windows only): manually extract "waveled\data\raw\features.tar.gz" with a software that can handle non case-sensitive files (such as .7zip), move the resulting folders 'bal_train, eval, unbal_train' into the '/raw' path, and erase the used .tar.gz file
+
+### Available Commands
+To list all available commands in the Makefile, run: `make help`
+
+## Data Sources
+
+The data used in this project comes from:
+
+- [AudioSet](https://research.google.com/audioset/): AudioSet by Google.
 
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+## Contributing
+If you would like to contribute to this project, please fork the repository and submit a pull request with your changes
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/FelSeb-Team/waveled/blob/ffaecf9d1b275e3cb878cafda6f2012726d9cc20/LICENSE) file for details.
+
+## Acknowledgments
+Thanks to the team for their collaborative efforts in this project and to Google for providing the datasets used in our analysis.
+
+--------
