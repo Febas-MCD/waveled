@@ -1,4 +1,4 @@
-# Evaluación Comparativa de Modelos para Clasificación de Audio
+# Evaluación Comparativa Preliminar de Modelos para Clasificación de Audio
 
 ## 📊 Resultados en Conjunto de Test
 
@@ -12,6 +12,11 @@
 | Recall            | 0.8509             | 0.8600 (+1.1%)               | >0.80    | 
 | F1-Score          | 0.8095             | 0.8120 (+0.3%)               | >0.75    | 
 
+**✅ Ventajas:**
+- Eficiencia computacional 
+- Bajo consumo de recursos 
+- Fácil mantenimiento e interpretabilidad
+
 ### Modelo CNN+Attention
 | Métrica           | Valor (Umbral=0.5) | Valor (Umbral Óptimo) | Cambio |
 |-------------------|--------------------|-----------------------|--------|
@@ -22,18 +27,6 @@
 | Recall            | 0.8469             | 0.8700 (+2.3%)        | -0.4% vs RL | 
 | F1-Score          | 0.8100             | 0.8110 (+0.1%)        | +0.2% vs RL | 
 
-
-
-
-## 🏭 Viabilidad para Producción
-
-### Modelo de Regresión Logística
-**✅ Ventajas:**
-- Eficiencia computacional 
-- Bajo consumo de recursos 
-- Fácil mantenimiento e interpretabilidad
-
-### Modelo CNN+Attention
 **✅ Ventajas:**
 - Mejora en precisión (+0.5% en métricas clave)
 - Arquitectura escalable para mejoras futuras
@@ -44,16 +37,3 @@
 - Mayor costo operacional
 - Complejidad de mantenimiento
 
-## 📌 Recomendación Final
-
-**Se recomienda implementar el modelo de Regresión Logística porque:**
-1. Las diferencias en rendimiento son mínimas (+0.2% F1, -0.1% PR-AUC)
-2. Supera consistentemente los KPIs mínimos requeridos:
-   - Recall: 85.09% (vs 85% requerido)
-   - F1-Score: 0.8095 (vs 0.80 objetivo)
-3. Ofrece ventajas operacionales decisivas
-
-**Considerar el modelo CNN+Attention solo si:**
-- Aparecen requisitos de >90% recall
-- Se dispone de presupuesto para infraestructura GPU
-- Se necesita detectar subpatrones complejos en audio
