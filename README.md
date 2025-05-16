@@ -1,8 +1,8 @@
 # Sound waves labeling project (WAVELED)
 
-## Description
+## Objective
 
-This project seeks the identification, analysis and classification of sound waves in a data science project.
+WaveLed is a machine learning-based project for detecting and classifying sound waves. In its initial phase, it identifies whether a sound is music or not; future stages aim to classify musical genres and detect general sound events. This project is ideal for research, accessibility tools, smart environments, and audio-based applications.
 
 ## Project Organization
 
@@ -56,7 +56,7 @@ This project seeks the identification, analysis and classification of sound wave
 ## Usage Instructions
 
 1. Clone the repository: `git clone [https://github.com/FelSeb-Team/waveled.git]`
-2. Create enviroment: `make create_environment`
+2. Create environment: `make create_environment`
 3. Install the dependencies: `make requirements`
 4. Create the necessary folders: `make folders`
 5. Run the Makefile Data Downloader: `make download_data`
@@ -72,6 +72,9 @@ The data used in this project comes from:
 - [AudioSet](https://research.google.com/audioset/): AudioSet by Google.
 
 --------
+
+## Project Status
+🚧 This project is in an early development phase. Only the binary classification (music vs non-music) model is currently implemented.
 
 ## Contributing
 If you would like to contribute to this project, please fork the repository and submit a pull request with your changes
