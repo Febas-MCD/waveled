@@ -96,7 +96,5 @@ if __name__ == "__main__":
     entrada = sys.argv[1]
     salida = sys.argv[2]
 
-    # Puedes cambiar labels y video_id según tu necesidad
     create_tfrecord(entrada, salida, video_id=os.path.basename(entrada), labels=[1], seq_length=10)
 
-# python mp3_to_tfrecord.py C:\Users\Sebastian\Documents\GitHub\waveled\data\processed\eterna-cancao-wav-12569.mp3 C:\Users\Sebastian\Documents\GitHub\waveled\data\processed\output\salida.tfrecord

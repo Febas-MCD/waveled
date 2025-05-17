@@ -1,12 +1,11 @@
 # Sound waves labeling project (WAVELED)
 
-## Objective
-
 WaveLed is a machine learning-based project for detecting and classifying sound waves. In its initial phase, it identifies whether a sound is music or not; future stages aim to classify musical genres and detect general sound events. This project is ideal for research, accessibility tools, smart environments, and audio-based applications.
 
-## Project Organization
+---
 
-------------
+## 📂 Project Structure
+
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -28,8 +27,7 @@ WaveLed is a machine learning-based project for detecting and classifying sound 
     ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
+    │   
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
@@ -53,7 +51,11 @@ WaveLed is a machine learning-based project for detecting and classifying sound 
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
-## Usage Instructions
+---
+
+## 🚀 Quick Start
+
+### Installation
 
 1. Clone the repository: `git clone [https://github.com/FelSeb-Team/waveled.git]`
 2. Create environment: `make create_environment`
@@ -65,24 +67,51 @@ WaveLed is a machine learning-based project for detecting and classifying sound 
 ### Available Commands
 To list all available commands in the Makefile, run: `make help`
 
-## Data Sources
+---
+
+## 🤖 Using Pre-trained Models
+
+**Repository URL:** [https://dagshub.com/felytz/waveled.mlflow](https://dagshub.com/felytz/waveled.mlflow)
+
+1. Clone the Repository: `git clone https://dagshub.com/felytz/waveled.mlflow.git`
+2. Set Up the Environment: `pip install -r requirements.txt`
+3. Explore Available Models: 
+To browse available models and runs, explore the mlruns/ directory manually, or run: `mlflow models list -r ./mlruns`
+4. Load a Model in Python:
+```
+import mlflow.pyfunc
+
+# Replace with actual experiment ID and run ID
+model_path = "mlruns/<experiment_id>/<run_id>/artifacts/model"
+model = mlflow.pyfunc.load_model(model_path)
+```
+
+---
+
+## 📊 Data Sources
 
 The data used in this project comes from:
 
 - [AudioSet](https://research.google.com/audioset/): AudioSet by Google.
 
---------
+---
 
-## Project Status
-🚧 This project is in an early development phase. Only the binary classification (music vs non-music) model is currently implemented.
+## 🏗️ Project Status
+This project is in an early development phase. Only the binary classification (music vs non-music) model is currently implemented.
 
-## Contributing
-If you would like to contribute to this project, please fork the repository and submit a pull request with your changes
+---
 
-## License
+## 🤝 Contributing
+If you would like to contribute to this project, please fork the repository and submit a pull request with your changes.
+
+---
+
+## 📜 License
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/FelSeb-Team/waveled/blob/ffaecf9d1b275e3cb878cafda6f2012726d9cc20/LICENSE) file for details.
 
-## Acknowledgments
+---
+
+## 🙏 Acknowledgments
 Thanks to the team for their collaborative efforts in this project and to Google for providing the datasets used in our analysis.
 
---------
+---
