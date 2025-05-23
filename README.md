@@ -23,26 +23,29 @@ WaveLed is a machine learning-based project for detecting and classifying sound 
     ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+    │                         Includes prediction results and evaluation metrics.
+    │
+    ├── to_test            <- MP3 files to be processed and analyzed.    
     │   
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── src                <- Source code for use in this project.  
-    │   ├── __init__.py    <- Makes src a Python module  
-    │   ├── data           <- Scripts to download or generate data  
-    │   │   ├── data_downloader.py  
-    │   │   └── make_dataset.py  
-    │   ├── features       <- Scripts to turn raw data into features for modeling  
-    │   │   └── build_features.py  
-    │   ├── models         <- Scripts to train models and then use trained models to make predictions  
-    │   │   ├── predict_dagshub.py  
-    │   │   ├── predict_model.py   
-    │   │   ├── train_model.py  
-    │   │   └── upload_model.py  
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations  
-    │       └── visualize.py 
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    └── src                <- Source code for use in this project.  
+        ├── paths.py       <- Defines and centralizes all file and directory paths used in the project. 
+        ├── data           <- Scripts to download or generate data  
+        │   ├── data_downloader.py  
+        │   └── make_dataset.py  
+        ├── features       <- Scripts to turn raw data into features for modeling  
+        │   └── build_features.py  
+        ├── models         <- Scripts to train models and then use trained models to make predictions  
+        │   ├── predict_dagshub.py
+        │   ├── predict_model.py      
+        │   ├── predict_utils.py   
+        │   ├── train_model.py
+        │   ├── train_utils.py   
+        │   └── upload_model.py  
+        └── visualization  <- Scripts to create exploratory and results oriented visualizations  
+            └── visualize.py 
 
 ---
 
