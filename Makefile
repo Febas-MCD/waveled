@@ -1,11 +1,10 @@
-.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3 create_environment test_environment help
+.PHONY: clean requirements create_environment test_environment help train_model upload_model local_pred pred
 
 #################################################################################
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
+PROJECT_DIR := $(shell python -c "import os; print(os.path.dirname(os.path.realpath('$(MAKEFILE_LIST)')))")
 PROFILE = default
 PROJECT_NAME = waveled
 PYTHON_INTERPRETER = python
@@ -14,7 +13,7 @@ PYTHON_INTERPRETER = python
 ifeq ($(OS),Windows_NT)
 	SYSTEM = Windows
 	CONDA_DETECT_CMD = where conda
-	VENV_ACTIVATE_CMD = .\\venv\\Scripts\\activate
+	VENV_ACTIVATE_CMD = .\venv\Scripts\activate
 else
 	SYSTEM = Unix
 	CONDA_DETECT_CMD = which conda
@@ -72,14 +71,34 @@ test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
 
 ## Train model locally
-local_model:
-    python src/models/train_model.py
+train_model:
+	python src/models/train_model.py
 
+## Upload local model
 upload_model:
-    python src/models/upload_model.py
+	python src/models/upload_model.py
 
+## Predict using local model
 local_pred:
-    python src/models/predict_model.py
+	python src/models/predict_model.py
 
-dh_pred:
-    python src/models/predict_dagshub.py
+## Predict using latest dagshub model
+pred:
+	python src/models/predict_dagshub.py
+
+## Display help message
+help:
+	@echo "Available commands:"
+	@echo ""
+	@echo "  clean               - Delete all compiled Python files"
+	@echo "  create_environment  - Set up python interpreter environment"
+	@echo "  download_data       - Download raw data"
+	@echo "  help                - Display this help message"
+	@echo "  local_pred          - Predict using local model"
+	@echo "  pred                - Predict using latest dagshub model"
+	@echo "  requirements        - Install Python Dependencies"
+	@echo "  test_environment    - Test python environment is setup correctly"
+	@echo "  train_model         - Train model locally"
+	@echo "  upload_model        - Upload local model"
+	@echo ""
+	@echo "To run a command, type 'make <command>'"
