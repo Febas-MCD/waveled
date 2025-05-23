@@ -101,4 +101,4 @@ mlruns/
 /models/LogisticRegression_PCA
 /models/RandomForest
 /models/XGBoost
-/reports
+reports/resultados.csv
