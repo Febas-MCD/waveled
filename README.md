@@ -60,9 +60,8 @@ WaveLed is a machine learning-based project for detecting and classifying sound 
 1. Clone the repository: `git clone [https://github.com/FelSeb-Team/waveled.git]`
 2. Create environment: `make create_environment`
 3. Install the dependencies: `make requirements`
-4. Create the necessary folders: `make folders`
-5. Run the Makefile Data Downloader: `make download_data`
-6. (Windows only): manually extract "waveled\data\raw\features.tar.gz" with a software that can handle non case-sensitive files (such as .7zip), move the resulting folders 'bal_train, eval, unbal_train' into the '/raw' path, and erase the used .tar.gz file
+4. Run the Makefile Data Downloader: `make download_data`
+5. (Windows only): manually extract "waveled\data\raw\features.tar.gz" with a software that can handle non case-sensitive files (such as .7zip), move the resulting folders 'bal_train, eval, unbal_train' into the '/raw' path, and erase the used .tar.gz file
 
 ### Available Commands
 To list all available commands in the Makefile, run: `make help`
