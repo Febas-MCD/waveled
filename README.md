@@ -8,44 +8,40 @@ WaveLed is a machine learning-based project for detecting and classifying sound 
 
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
+    ├── Makefile           <- Makefile with commands like `make create_environment` or `make download_data`
+    ├── README.md          
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
+    │   └── raw            <- The original data dump.
     │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
+    ├── models             <- Models saved objects.
+    │               
+    ├── notebooks          <- Jupyter notebooks.
     │
     ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
     │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │                         Includes prediction results and evaluation metrics.
-    │
-    ├── to_test            <- MP3 files to be processed and analyzed.    
+    ├── reports            <- Includes prediction results and evaluation metrics.
     │   
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    └── src                <- Source code for use in this project.  
-        ├── paths.py       <- Defines and centralizes all file and directory paths used in the project. 
-        ├── data           <- Scripts to download or generate data  
-        │   ├── data_downloader.py  
-        │   └── make_dataset.py  
-        ├── features       <- Scripts to turn raw data into features for modeling  
-        │   └── build_features.py  
-        ├── models         <- Scripts to train models and then use trained models to make predictions  
-        │   ├── predict_dagshub.py
-        │   ├── predict_model.py      
-        │   ├── predict_utils.py   
-        │   ├── train_model.py
-        │   ├── train_utils.py   
-        │   └── upload_model.py  
-        └── visualization  <- Scripts to create exploratory and results oriented visualizations  
-            └── visualize.py 
+    ├── src                <- Source code for use in this project.  
+    │   ├── paths.py       <- Defines and centralizes all file and directory paths used in the project. 
+    │   ├── data           <- Scripts to download or generate data  
+    │   │   ├── data_downloader.py  
+    │   │   └── make_dataset.py  
+    │   ├── features       <- Scripts to turn raw data into features for modeling  
+    │   │   └── build_features.py  
+    │   ├── models         <- Scripts to train models and then use trained models to make predictions  
+    │   │   ├── predict_dagshub.py
+    │   │   ├── predict_model.py      
+    │   │   ├── predict_utils.py   
+    │   │   ├── train_model.py
+    │   │   ├── train_utils.py   
+    │   │   └── upload_model.py  
+    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations  
+    │       └── visualize.py
+    │
+    └── to_test            <- MP3 files to be processed and analyzed.     
 
 ---
 
@@ -66,9 +62,17 @@ To list all available commands in the Makefile, run: `make help`
 
 ## 🤖 Using Pre-trained Models
 
-**Repository URL:** [https://dagshub.com/felytz/waveled.mlflow](https://dagshub.com/felytz/waveled.mlflow)
+**Latest models:**
+1. Use make pred to make a prediction using the latest dagshub registered models.
 
-1. Clone the Repository: `git clone https://dagshub.com/felytz/waveled.mlflow.git`
+**Local trained model:**
+1. Use make train_model to train model locally.
+2. Use local_pred to predict using trained models.
+
+**More in detail process:**
+**Repository URL:** [https://dagshub.com/Febas-MCD/waveled.mlflow](https://dagshub.com/Febas-MCD/waveled.mlflow)
+
+1. Clone the Repository: `git clone https://dagshub.com/Febas-MCD/waveled.mlflow.git`
 2. Set Up the Environment: `pip install -r requirements.txt`
 3. Explore Available Models: 
 To browse available models and runs, explore the mlruns/ directory manually, or run: `mlflow models list -r ./mlruns`
