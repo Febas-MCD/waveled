@@ -97,3 +97,8 @@ target/
 # mlflow runs
 mlruns/ 
 *.mp3
+/models/LinearSVC_PCA
+/models/LogisticRegression_PCA
+/models/RandomForest
+/models/XGBoost
+/reports
